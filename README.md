@@ -59,6 +59,67 @@ c = x^e mod n
 x = c^d mod n
 ```
 
+
+# RSA Cryptosystem (TelegramBot)
+
+## User A (Key Generation)
+
+First, two distinct prime numbers `p` and `q` are selected. Then their product is calculated:
+
+```
+n = p·q
+```
+
+The number `n` will be part of the public key.
+
+Next, Euler's totient function is calculated:
+
+```
+φ(n) = (p − 1)(q − 1)
+```
+
+A number `d` is chosen such that:
+
+```
+GCD(d, φ(n)) = 1
+```
+
+This means that `d` is coprime with `φ(n)`.
+
+After that, the number `e` is found; it is the multiplicative inverse of `d` modulo `φ(n)`. That is, the following congruence is solved:
+
+```
+e·d ≡ 1 (mod φ(n))
+```
+
+which is accomplished using the extended Euclidean algorithm.
+
+**Public key:** `(e, n)`
+**Private key:** `(d, n)`
+
+---
+## User B (Encryption)
+
+The plaintext is converted into numbers using the indices of the Russian alphabet from the `alphabet` array.
+
+Encryption is performed using the formula:
+
+```
+c = x^e mod n
+```
+
+The resulting value `c` is transmitted to user A.
+
+---
+
+## Decryption
+
+Decryption is performed using the formula:
+
+```
+x = c^d mod n
+```
+
 ## ПРИМЕР:
 
 ```
